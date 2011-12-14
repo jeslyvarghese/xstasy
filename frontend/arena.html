@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>:: The Arena ::</title>
+<script type="text/javascript" src="../scripts/jquery.js"></script>
+<script type="text/javascript" src="../scripts/max.js"></script>
+<script type="text/javascript">
+setInterval("checkSession()",60000);
+</script>
+</head>
+
+<body onload=" checkSession()">
+<div id="UserTab">
+	<div id="FirstName">
+    </div><!--FirstName ends here-->
+</div><!--End of user Tab-->
+
+<iframe id="QuestionTab" src="question.html">
+</iframe>
+<div id="Status">
+</div><!--End of status div-->
+<div id="AnswerPane">
+	<div id="AnswerBox">
+    	<input type="text" id = "Answer" name="Answer" />
+    </div><!--End Of Answer Box-->
+	<div id="Solved">
+    	You Already Solved this question!
+    </div>
+</div><!---End of answer pane-->
+<div id="LeaderBoard">
+</div><!--LeaderBoard Ends here-->
+<div id="Navigator"></div><!--Navigator ends here-->
+<div id="test_buttons">
+	<input type="button" value="Login" onclick="Login()" />
+    <input type="button" value="Log Out" onclick="LogOut()" />
+    <input type="button" value="Render Question" onclick="questionRender()" />
+    <input type="button" value="Show Answer Pane" onclick="showAnswerPane()" />
+    <input type="button" value="Show Answer Pane" onclick="showNavigationPane()" />
+    
+</div>
+</body>
+</html>

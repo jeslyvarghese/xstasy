@@ -1,0 +1,3 @@
+<?php
+	$initialqID = 1;
+	?>

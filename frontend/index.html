@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Deadlock Evolution</title>
+<script type="text/javascript" src="../scripts/jquery.js"></script>
+<script type="text/javascript">
+	checkSession();
+	function checkSession()
+	{
+		$.ajax(
+			   	{
+					type:"GET",
+					url:"../code/frontend_session_management.php?action=validate+session",
+					cache:false,
+					success:function(jsonData)	{
+													jsonData = $.parseJSON(jsonData);
+													if(jsonData.Status=="Logged Out")
+														{
+															$("#PlayStatus").html('<a href="#" onclick="loginbox()">LOG IN</a>');
+														}
+													else if(jsonData.Status=="Logged In")
+														{
+															$("#PlayStatus").html('<a href="arena.html">PLAY</a>');
+														}
+													else if(jsonData.Status=="Log In")
+														{
+															Login();															
+														}
+												}
+				}
+			);
+	}
+function Login()
+	{
+		
+		$.ajax(
+			   	{
+					type:"GET",
+					url:"../code/frontend_user_login.php?action=login",
+					cache:false,
+					success:function(jsonData)	{
+													//Output the html to a div
+													
+													var outdata = $.parseJSON(jsonData);
+													if(outdata.Status=="Login")
+														{
+															$("#PlayStatus").html('<a href="#" onclick="loginbox">LOG IN</a>');
+														}
+													else if(outdata.Status=="Welcome")
+														{
+																													
+																
+																$("#PlayStatus").html('<a href="arena.html">PLAY</a>');
+																//Also write a function retrieve all user information from techKshetra front end
+																//A redirecton to welocme to deadlock for the first time page
+														}
+													else if(outdata.Status=="Welcome Back")
+														{
+																														
+															$("#PlayStatus").html('<a href="arena.html">PLAY</a>');
+															//A redirection to the arena
+														}
+													else	
+														{
+															
+															// its probably a server error
+														}
+												}
+				}
+			);
+	}
+</script>
+</head>
+
+<body>
+<div id = "container">
+	<div id = "Welcome">
+    	Welcome to deadlock evolution and a lot of blah.. blah blah..
+        <div id="PlayStatus"></div>
+    </div><!--Welcome Ends Here-->
+    <div id = "Rules">
+    	Rules of deadlock
+    </div><!--Rules end here-->
+    <div id="LeaderBoard">
+    	Deadlock leaderboard
+    </div><!--LeaderBoard Ends here-->
+    <div id = "Legend">
+    	The long story of deadlock and its evoluton
+    </div><!--Legend ends here-->
+</div><!--Container Ends Here-->
+<div id="LogInBox">
+	<form name="loginform">
+    	Email: <input type="text" id = "email" name = "email" />
+    	Password: <input type="image" id="password" name="password" />
+    	<input type="button" value="Log In" onclick="loginto(document.LogInBox.email.value.document.LogInBox.password.value)" />
+    </form>
+</div>
+</body>
+</html>
